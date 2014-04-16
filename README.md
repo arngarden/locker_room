@@ -1,0 +1,33 @@
+
+Locker Room
+===========
+
+Locker Room is a shared lock manager that uses MongoDB to store the locks.
+This makes it possible for resources on a network to share the same locks.
+
+Usage
+-----------
+
+    import locker_room
+    locker = locker_room.LockerRoom(host='server1')
+    
+    with locker.lock_and_release('my_lock', owner='gustav', timeout=2):
+        # do important stuff
+
+It is also possible to use the locker as a function decorator:
+ 
+    @locker.lock_and_release('my_lock'):
+    def important_function():
+        # do important stuff
+
+Or you can call the lock and release-methods explicitly:
+
+    locker.lock('my_lock', timeout=2)
+    # do stuff
+    locker.release('my_lock')
+
+Setup and requirements
+----------------------
+
+Locker Room needs access to MongoDB.
+For function decorator to work you need contextlib2 if you are using Python 2.7.
