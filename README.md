@@ -27,7 +27,8 @@ Or you can call the lock and release-methods explicitly:
     
 To find out the status of a lock, use the status-method:
     locker.status('my_lock')
-    >> {u'owner': u'gustav', u'timestamp': datetime.datetime(2014, 4, 17, 14, 6, 8, 291000), u'_id': u'my_lock',  u'locked': True}
+    >> {u'owner': u'gustav', u'timestamp': datetime.datetime(2014, 4, 17, 14, 6, 8, 291000), 
+        u'_id': u'my_lock',  u'locked': True}
 
 Setup and requirements
 ----------------------
