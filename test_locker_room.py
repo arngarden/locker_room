@@ -31,7 +31,7 @@ class TestLock(unittest.TestCase):
         with self.assertRaises(LockerException):
             self.locker.release('test_lock3')
             
-        with self.locker.lock_and_release('test_lock') as lock:
+        with self.locker.lock_and_release('test_lock'):
             status = self.locker.status('test_lock')
             self.assertTrue(status['locked'])
         status = self.locker.status('test_lock')

@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 try:
     from contextlib2 import contextmanager
 except:
-    print 'Warning: contextlib2 is not present, function decorator will not work properly'
+    print 'Warning: contextlib2 is not present, function decorator might not work properly'
     from contextlib import contextmanager
 
 
@@ -59,7 +59,7 @@ class LockerRoom(object):
                 time.sleep(self.TIMEOUT)
                 if timeout:
                     if datetime.utcnow() >= start_time + timedelta(seconds=timeout):
-                        status = self.lock_collection.find_one({'_id': name})
+                        status = self.status(name)
                         raise LockerException('Timeout, lock owned by %s since %s'
                                               % (status['owner'], status['timestamp']))
 
@@ -68,8 +68,8 @@ class LockerRoom(object):
         Raises LockerException if we try and release a unlocked lock.
         """
         status = self.lock_collection.find_and_modify({'_id': name},
-                                                 {'locked': False, 'owner': None,
-                                                  'timestamp': None})
+                                                      {'locked': False, 'owner': None,
+                                                       'timestamp': None})
         if not status or not status['locked']:
             raise LockerException('Trying to release a unlocked lock')
 
