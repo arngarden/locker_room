@@ -1,4 +1,3 @@
-
 import unittest
 import locker_room
 from locker_room import LockerException
@@ -23,7 +22,7 @@ class TestLock(unittest.TestCase):
 
         self.locker.lock('test_lock2', owner='unittest')
         with self.assertRaises(LockerException):
-            print self.locker.lock('test_lock2', owner='unittest', timeout=1)
+            self.locker.lock('test_lock2', owner='unittest', timeout=1)
         
         self.locker.release('test_lock2')
         with self.assertRaises(LockerException):
