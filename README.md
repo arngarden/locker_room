@@ -1,4 +1,3 @@
-
 Locker Room
 ===========
 
@@ -25,9 +24,16 @@ Or you can call the lock and release-methods explicitly:
     locker.lock('my_lock', timeout=2)
     # do stuff
     locker.release('my_lock')
+    
+To find out the status of a lock, use the status-method:
+    
+    locker.status('my_lock')
+    >> {u'owner': u'gustav', u'timestamp': datetime.datetime(2014, 4, 17, 14, 6, 8, 291000), 
+        u'_id': u'my_lock',  u'locked': True}
 
 Setup and requirements
 ----------------------
 
 Locker Room needs access to MongoDB.
-For function decorator to work you need contextlib2 if you are using Python 2.7.
+
+For function decorator to work you need contextlib2, if you are using Python 2.7.
